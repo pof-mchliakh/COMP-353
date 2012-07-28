@@ -1,0 +1,32 @@
+<%= form_for @address, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :streetName, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :streetName, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :apt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :apt, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :city, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :city, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :postalcode, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :postalcode, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                addresses_path, :class => 'btn' %>
+  </div>
+<% end %>

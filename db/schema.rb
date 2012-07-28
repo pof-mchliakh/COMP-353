@@ -11,15 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120728193452) do
+ActiveRecord::Schema.define(:version => 20120728203921) do
 
-  create_table "Cows", :force => true do |t|
-    t.string "name", :limit => 45
+  create_table "Address", :primary_key => "ID", :force => true do |t|
+    t.string  "streetName"
+    t.integer "apt"
+    t.string  "city"
+    t.string  "postalcode", :limit => 6
   end
 
-  create_table "people", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "Person", :primary_key => "ID", :force => true do |t|
+    t.string  "fName"
+    t.string  "lName"
+    t.integer "telephone"
+    t.integer "addressID"
+  end
+
+  add_index "Person", ["addressID"], :name => "addressID"
+
+  create_table "post", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
