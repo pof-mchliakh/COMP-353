@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  truck_type_id: 
+  cost_type_id: 
+  amt: 9.99
+
+two:
+  truck_type_id: 
+  cost_type_id: 
+  amt: 9.99

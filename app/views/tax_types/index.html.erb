@@ -1,0 +1,23 @@
+<h1>Listing tax_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tax_types.each do |tax_type| %>
+  <tr>
+    <td><%= tax_type.name %></td>
+    <td><%= link_to 'Show', tax_type %></td>
+    <td><%= link_to 'Edit', edit_tax_type_path(tax_type) %></td>
+    <td><%= link_to 'Destroy', tax_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tax type', new_tax_type_path %>

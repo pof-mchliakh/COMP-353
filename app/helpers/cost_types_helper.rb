@@ -1,0 +1,2 @@
+module CostTypesHelper
+end

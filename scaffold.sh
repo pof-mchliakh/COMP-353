@@ -10,7 +10,7 @@ done
 
 for object in Client Cost CostType Driver Licence Invoice Mission MissionSheet Payment Reservation Tax Truck TruckType
 do
-  rails d bootstrap:themed {$object}s
+  rails d bootstrap:themed $object"s"
 done
 
 yes | rails g scaffold Address street_name:string city:string postal_code:string --skip-migration
@@ -28,13 +28,15 @@ yes | rails g scaffold Reservation client_id:int mission_id:int address_id:int a
 yes | rails g scaffold TaxType name:string --skip-migration
 yes | rails g scaffold Truck truck_type_id:int --skip-migration
 yes | rails g scaffold TruckType name:string --skip-migration
+yes | rails g scaffold Mission invoice_id:int driver_id:int truck_id:int expected_start_time:datetime expected_end_time:datetime --skip-migration
+yes | rails g scaffold Tax start_date:datetime end_date:datetime percentage:float --skip-migration
 
 for object in Addresses InvoiceTaxes People Taxes
 do
   yes | rails g bootstrap:themed $object
 done
 
-for object in Client Cost CostType Driver Licence Invoice Mission MissionSheet Payment Reservation Tax Truck TruckType
+for object in Client Cost CostType Driver LicenseType Invoice Mission MissionSheet Payment Reservation Truck TruckType
 do
-  yes | rails g bootstrap:themed {$object}s
+  yes | rails g bootstrap:themed $object"s"
 done

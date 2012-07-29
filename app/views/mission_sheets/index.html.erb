@@ -1,0 +1,44 @@
+<%- model_class = MissionSheet -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:mission_id) %></th>
+      <th><%= model_class.human_attribute_name(:actual_start_time) %></th>
+      <th><%= model_class.human_attribute_name(:actual_end_time) %></th>
+      <th><%= model_class.human_attribute_name(:start_odometer) %></th>
+      <th><%= model_class.human_attribute_name(:end_odometer) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @mission_sheets.each do |mission_sheet| %>
+      <tr>
+        <td><%= link_to mission_sheet.id, mission_sheet_path(mission_sheet) %></td>
+        <td><%= mission_sheet.mission_id %></td>
+        <td><%= mission_sheet.actual_start_time %></td>
+        <td><%= mission_sheet.actual_end_time %></td>
+        <td><%= mission_sheet.start_odometer %></td>
+        <td><%= mission_sheet.end_odometer %></td>
+        <td><%=l mission_sheet.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_mission_sheet_path(mission_sheet), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      mission_sheet_path(mission_sheet),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_mission_sheet_path,
+            :class => 'btn btn-primary' %>

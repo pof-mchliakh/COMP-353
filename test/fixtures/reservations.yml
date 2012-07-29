@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  client_id: 
+  mission_id: 
+  address_id: 
+  appointment_date: 2012-07-28 21:22:35
+  expected_end_time: 2012-07-28 21:22:35
+
+two:
+  client_id: 
+  mission_id: 
+  address_id: 
+  appointment_date: 2012-07-28 21:22:35
+  expected_end_time: 2012-07-28 21:22:35
