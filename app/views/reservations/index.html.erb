@@ -9,6 +9,8 @@
       <th><%= model_class.human_attribute_name(:client_id) %></th>
       <th><%= model_class.human_attribute_name(:mission_id) %></th>
       <th><%= model_class.human_attribute_name(:address_id) %></th>
+      <th><%= model_class.human_attribute_name(:street_number) %></th>
+      <th><%= model_class.human_attribute_name(:apt) %></th>
       <th><%= model_class.human_attribute_name(:appointment_date) %></th>
       <th><%= model_class.human_attribute_name(:expected_end_time) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -22,6 +24,8 @@
         <td><%= reservation.client_id %></td>
         <td><%= reservation.mission_id %></td>
         <td><%= reservation.address_id %></td>
+        <td><%= reservation.street_number %></td>
+        <td><%= reservation.apt %></td>
         <td><%= reservation.appointment_date %></td>
         <td><%= reservation.expected_end_time %></td>
         <td><%=l reservation.created_at %></td>

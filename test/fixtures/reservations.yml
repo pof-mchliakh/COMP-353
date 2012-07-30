@@ -4,12 +4,16 @@ one:
   client_id: 
   mission_id: 
   address_id: 
-  appointment_date: 2012-07-28 21:22:35
-  expected_end_time: 2012-07-28 21:22:35
+  street_number: 
+  apt: MyString
+  appointment_date: 2012-07-30 11:58:13
+  expected_end_time: 2012-07-30 11:58:13
 
 two:
   client_id: 
   mission_id: 
   address_id: 
-  appointment_date: 2012-07-28 21:22:35
-  expected_end_time: 2012-07-28 21:22:35
+  street_number: 
+  apt: MyString
+  appointment_date: 2012-07-30 11:58:13
+  expected_end_time: 2012-07-30 11:58:13

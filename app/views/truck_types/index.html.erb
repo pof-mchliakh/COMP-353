@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -15,7 +15,7 @@
     <% @truck_types.each do |truck_type| %>
       <tr>
         <td><%= link_to truck_type.id, truck_type_path(truck_type) %></td>
-        <td><%= truck_type.type %></td>
+        <td><%= truck_type.name %></td>
         <td><%=l truck_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

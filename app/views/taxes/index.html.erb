@@ -9,7 +9,7 @@
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
       <th><%= model_class.human_attribute_name(:percentage) %></th>
-      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:tax_type_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -21,7 +21,7 @@
         <td><%= tax.start_date %></td>
         <td><%= tax.end_date %></td>
         <td><%= tax.percentage %></td>
-        <td><%= tax.type %></td>
+        <td><%= tax.tax_type_id %></td>
         <td><%=l tax.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

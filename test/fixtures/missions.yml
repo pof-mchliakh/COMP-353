@@ -4,12 +4,12 @@ one:
   invoice_id: 
   driver_id: 
   truck_id: 
-  expected_start_time: 2012-07-28 21:22:51
-  expected_end_time: 2012-07-28 21:22:51
+  expected_start_time: 2012-07-30 11:58:28
+  expected_end_time: 2012-07-30 11:58:28
 
 two:
   invoice_id: 
   driver_id: 
   truck_id: 
-  expected_start_time: 2012-07-28 21:22:51
-  expected_end_time: 2012-07-28 21:22:51
+  expected_start_time: 2012-07-30 11:58:28
+  expected_end_time: 2012-07-30 11:58:28

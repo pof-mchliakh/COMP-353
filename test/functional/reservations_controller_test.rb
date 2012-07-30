@@ -18,7 +18,7 @@ class ReservationsControllerTest < ActionController::TestCase
 
   test "should create reservation" do
     assert_difference('Reservation.count') do
-      post :create, reservation: { address_id: @reservation.address_id, appointment_date: @reservation.appointment_date, client_id: @reservation.client_id, expected_end_time: @reservation.expected_end_time, mission_id: @reservation.mission_id }
+      post :create, reservation: { address_id: @reservation.address_id, appointment_date: @reservation.appointment_date, apt: @reservation.apt, client_id: @reservation.client_id, expected_end_time: @reservation.expected_end_time, mission_id: @reservation.mission_id, street_number: @reservation.street_number }
     end
 
     assert_redirected_to reservation_path(assigns(:reservation))
@@ -35,7 +35,7 @@ class ReservationsControllerTest < ActionController::TestCase
   end
 
   test "should update reservation" do
-    put :update, id: @reservation, reservation: { address_id: @reservation.address_id, appointment_date: @reservation.appointment_date, client_id: @reservation.client_id, expected_end_time: @reservation.expected_end_time, mission_id: @reservation.mission_id }
+    put :update, id: @reservation, reservation: { address_id: @reservation.address_id, appointment_date: @reservation.appointment_date, apt: @reservation.apt, client_id: @reservation.client_id, expected_end_time: @reservation.expected_end_time, mission_id: @reservation.mission_id, street_number: @reservation.street_number }
     assert_redirected_to reservation_path(assigns(:reservation))
   end
 

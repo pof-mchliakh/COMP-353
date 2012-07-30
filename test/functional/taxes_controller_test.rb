@@ -18,7 +18,7 @@ class TaxesControllerTest < ActionController::TestCase
 
   test "should create tax" do
     assert_difference('Tax.count') do
-      post :create, tax: { end_date: @tax.end_date, percentage: @tax.percentage, start_date: @tax.start_date }
+      post :create, tax: { end_date: @tax.end_date, percentage: @tax.percentage, start_date: @tax.start_date, tax_type_id: @tax.tax_type_id }
     end
 
     assert_redirected_to tax_path(assigns(:tax))
@@ -35,7 +35,7 @@ class TaxesControllerTest < ActionController::TestCase
   end
 
   test "should update tax" do
-    put :update, id: @tax, tax: { end_date: @tax.end_date, percentage: @tax.percentage, start_date: @tax.start_date }
+    put :update, id: @tax, tax: { end_date: @tax.end_date, percentage: @tax.percentage, start_date: @tax.start_date, tax_type_id: @tax.tax_type_id }
     assert_redirected_to tax_path(assigns(:tax))
   end
 

@@ -1,4 +1,4 @@
-<%- model_class = Driver -%>
+<%- model_class = DriverLicenseType -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
@@ -6,22 +6,24 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:person_id) %></th>
+      <th><%= model_class.human_attribute_name(:driver_id) %></th>
+      <th><%= model_class.human_attribute_name(:license_type_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @drivers.each do |driver| %>
+    <% @driver_license_types.each do |driver_license_type| %>
       <tr>
-        <td><%= link_to driver.id, driver_path(driver) %></td>
-        <td><%= driver.person_id %></td>
-        <td><%=l driver.created_at %></td>
+        <td><%= link_to driver_license_type.id, driver_license_type_path(driver_license_type) %></td>
+        <td><%= driver_license_type.driver_id %></td>
+        <td><%= driver_license_type.license_type_id %></td>
+        <td><%=l driver_license_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_driver_path(driver), :class => 'btn btn-mini' %>
+                      edit_driver_license_type_path(driver_license_type), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      driver_path(driver),
+                      driver_license_type_path(driver_license_type),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
                       :class => 'btn btn-mini btn-danger' %>
@@ -32,5 +34,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_driver_path,
+            new_driver_license_type_path,
             :class => 'btn btn-primary' %>

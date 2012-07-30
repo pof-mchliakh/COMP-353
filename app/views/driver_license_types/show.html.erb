@@ -1,20 +1,22 @@
-<%- model_class = Driver -%>
+<%- model_class = DriverLicenseType -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:person_id) %>:</strong></dt>
-  <dd><%= @driver.person_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:driver_id) %>:</strong></dt>
+  <dd><%= @driver_license_type.driver_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:license_type_id) %>:</strong></dt>
+  <dd><%= @driver_license_type.license_type_id %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              drivers_path, :class => 'btn'  %>
+              driver_license_types_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_driver_path(@driver), :class => 'btn' %>
+              edit_driver_license_type_path(@driver_license_type), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              driver_path(@driver),
+              driver_license_type_path(@driver_license_type),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>

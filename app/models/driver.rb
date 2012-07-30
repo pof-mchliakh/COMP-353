@@ -1,3 +1,3 @@
 class Driver < ActiveRecord::Base
-  attr_accessible :license_type_id
+  attr_accessible :person_id
 end

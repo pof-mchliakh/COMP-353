@@ -1,4 +1,4 @@
-for object in Address Client Cost CostType Driver Licence Invoice InvoiceTax Mission MissionSheet Payment Person Reservation Tax TaxType Truck TruckType
+for object in Address Client Cost CostType Driver LicenceType Invoice InvoiceTax Mission MissionSheet Payment Person Reservation Tax TaxType Truck TruckType
 do
   rails d scaffold $object
 done
@@ -8,7 +8,7 @@ do
   rails d bootstrap:themed $object
 done
 
-for object in Client Cost CostType Driver Licence Invoice Mission MissionSheet Payment Reservation Tax Truck TruckType
+for object in Client Cost CostType Driver LicenceType Invoice Mission MissionSheet Payment Reservation Tax Truck TruckType
 do
-  rails d bootstrap:themed {$object}s
+  rails d bootstrap:themed $object"s"
 done

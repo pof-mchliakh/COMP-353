@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-CostType.create([
-    {name: "KM"}, 
-    {name: "Duration"}
-])
+# CostType.create([
+#     {name: "KM"}, 
+#     {name: "Duration"}
+# ])
 
 # PaymentType.create([
 #      {type: "Check"},
@@ -39,10 +39,10 @@ CostType.create([
 #     {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", address_id: 1}
 # ])
 
-# TaxType.create([
-#     { name: "TPS" },
-#     { name: "TVQ" }
-# ])
+TaxType.create([
+    { name: "TPS" },
+    { name: "TVQ" }
+])
 
 # Tax.create([
 #     { start_date: Date.parse("2012-1-1 12:00:00"), end_date: nil, percentage: 0.085, tax_type_id: 1 },
