@@ -1,6 +1,6 @@
 Rentrack::Application.routes.draw do
   resources :taxes
-
+  
   resources :missions
 
   resources :truck_types
