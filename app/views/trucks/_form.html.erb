@@ -2,7 +2,7 @@
   <div class="control-group">
     <%= f.label :truck_type_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :truck_type_id, :class => 'number_field' %>
+      <%= collection_select(:truck, :truck_type_id, TruckType.all, :id, :name) %> 
     </div>
   </div>
 
