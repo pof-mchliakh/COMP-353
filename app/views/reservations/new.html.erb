@@ -3,4 +3,12 @@
   <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
+<div id="client_info" class="span5">
+    Client
+</div>
+<div class="span5">
 <%= render :partial => 'form' %>
+
+</div>
+<div id="payment_info" class="span5">Payment</div>
+<div id="mission_info" class="span5">Mission</div>
