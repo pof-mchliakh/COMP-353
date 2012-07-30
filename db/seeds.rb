@@ -12,15 +12,15 @@
 # ])
 
 # PaymentType.create([
-#      {type: "Check"},
-#      {type: "Credit Card"},
-#      {type: "Money"}, 
-#      {type: "Sexual Favour"}
+#      {name: "Check"},
+#      {name: "Credit Card"},
+#      {name: "Money"}, 
+#      {name: "Sexual Favour"}
 # ])
 
 # TruckType.create([
-#     {type: "12 Wheelers"}, 
-#     {type: "18 Wheelers"}
+#     {name: "12 Wheelers"}, 
+#     {name: "18 Wheelers"}
 # ])
 
 # Truck.create([
@@ -39,10 +39,10 @@
 #     {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", address_id: 1}
 # ])
 
-TaxType.create([
-    { name: "TPS" },
-    { name: "TVQ" }
-])
+# TaxType.create([
+#     { name: "TPS" },
+#     { name: "TVQ" }
+# ])
 
 # Tax.create([
 #     { start_date: Date.parse("2012-1-1 12:00:00"), end_date: nil, percentage: 0.085, tax_type_id: 1 },
@@ -50,3 +50,9 @@ TaxType.create([
 # ])
 
 # Invoice.create([ {date: Date.parse("2012-7-28 12:00:00")} ])
+
+LicenseType.create([
+    { name: "12W"},
+    { name: "18W"},
+    { name: "12345"}
+])

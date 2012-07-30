@@ -2,13 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-
- time:
-    formats:
-      default: "%d %b %Y %H:%M:%S"
-      short: "%b %H:%M"
-      short_day_name: "%a, %b %H:%M"
-      long: "%B %d, %Y %H:%M:%S"
-      long_day_name: "%a, %B %d, %Y %H:%M:%S"
-    am: "am"
-    pm: "pm"
+    time:
+        formats:
+          default: "%d %b %Y %H:%M:%S"
+          short: "%b %H:%M"
+          short_date: "%d %b %Y"
+          short_day_name: "%a, %b %H:%M"
+          long: "%B %d, %Y %H:%M:%S"
+          long_day_name: "%a, %B %d, %Y %H:%M:%S"
+        am: "am"
+        pm: "pm"

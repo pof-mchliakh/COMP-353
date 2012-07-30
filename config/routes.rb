@@ -1,4 +1,6 @@
 Rentrack::Application.routes.draw do  
+  resources :payment_types
+
   resources :taxes
 
   resources :missions
