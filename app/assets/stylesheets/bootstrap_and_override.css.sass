@@ -6,4 +6,22 @@ body
 select
     width: auto
 
+// Quick fix for twitter bootstrap to display errors in red
+form .clearfix:before, form .clearfix:after 
+    display: inline
+
+.control-group > .error, .control-group .error .help-block, .control-group .error .help-inline
+    color: #B94A48
+
+.control-group error .checkbox:focus, .control-group error .radio:focus, .control-group error input:focus, .control-group error select:focus, .control-group error textarea:focus
+    border-color: #953B39
+    -webkit-box-shadow: 0 0 6px #D59392
+    -moz-box-shadow: 0 0 6px #d59392
+    box-shadow: 0 0 6px #D59392
+
+.control-group .error .checkbox, .control-group .error .radio, .control-group .error input, .control-group .error select, .control-group .error textarea 
+    color: #B94A48
+    border-color: #B94A48
+//End quick fix
+
 @import "bootstrap-responsive"
