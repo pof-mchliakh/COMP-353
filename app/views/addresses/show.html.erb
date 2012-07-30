@@ -1,17 +1,15 @@
-<%- model_class = Address -%>
+<%- model_class = Addres -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:streetName) %>:</strong></dt>
-  <dd><%= @address.streetName %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:apt) %>:</strong></dt>
-  <dd><%= @address.apt %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_name) %>:</strong></dt>
+  <dd><%= @address.street_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
   <dd><%= @address.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:postalcode) %>:</strong></dt>
-  <dd><%= @address.postalcode %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
+  <dd><%= @address.postal_code %></dd>
 </dl>
 
 <div class="form-actions">

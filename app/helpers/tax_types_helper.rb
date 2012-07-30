@@ -1,0 +1,2 @@
+module TaxTypesHelper
+end

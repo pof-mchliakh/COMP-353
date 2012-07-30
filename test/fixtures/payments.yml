@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  invoice_id: 
+  payment_type_id: 
+
+two:
+  invoice_id: 
+  payment_type_id: 

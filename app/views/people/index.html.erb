@@ -6,11 +6,12 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:ID) %></th>
-      <th><%= model_class.human_attribute_name(:fName) %></th>
-      <th><%= model_class.human_attribute_name(:lName) %></th>
+      <th><%= model_class.human_attribute_name(:first_name) %></th>
+      <th><%= model_class.human_attribute_name(:last_name) %></th>
       <th><%= model_class.human_attribute_name(:telephone) %></th>
-      <th><%= model_class.human_attribute_name(:addressID) %></th>
+      <th><%= model_class.human_attribute_name(:street_number) %></th>
+      <th><%= model_class.human_attribute_name(:apt) %></th>
+      <th><%= model_class.human_attribute_name(:address_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -19,11 +20,12 @@
     <% @people.each do |person| %>
       <tr>
         <td><%= link_to person.id, person_path(person) %></td>
-        <td><%= person.ID %></td>
-        <td><%= person.fName %></td>
-        <td><%= person.lName %></td>
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
         <td><%= person.telephone %></td>
-        <td><%= person.addressID %></td>
+        <td><%= person.street_number %></td>
+        <td><%= person.apt %></td>
+        <td><%= person.address_id %></td>
         <td><%=l person.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

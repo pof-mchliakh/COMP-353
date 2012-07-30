@@ -1,0 +1,38 @@
+<%= form_for @mission, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :invoice_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :invoice_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :driver_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :driver_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :truck_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :truck_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expected_start_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :expected_start_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :expected_end_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :expected_end_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                missions_path, :class => 'btn' %>
+  </div>
+<% end %>

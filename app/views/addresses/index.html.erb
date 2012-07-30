@@ -1,4 +1,4 @@
-<%- model_class = Address -%>
+<%- model_class = Addres -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
@@ -6,10 +6,9 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:streetName) %></th>
-      <th><%= model_class.human_attribute_name(:apt) %></th>
+      <th><%= model_class.human_attribute_name(:street_name) %></th>
       <th><%= model_class.human_attribute_name(:city) %></th>
-      <th><%= model_class.human_attribute_name(:postalcode) %></th>
+      <th><%= model_class.human_attribute_name(:postal_code) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -18,10 +17,9 @@
     <% @addresses.each do |address| %>
       <tr>
         <td><%= link_to address.id, address_path(address) %></td>
-        <td><%= address.streetName %></td>
-        <td><%= address.apt %></td>
+        <td><%= address.street_name %></td>
         <td><%= address.city %></td>
-        <td><%= address.postalcode %></td>
+        <td><%= address.postal_code %></td>
         <td><%=l address.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

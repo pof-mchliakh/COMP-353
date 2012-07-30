@@ -1,0 +1,26 @@
+<%= form_for @cost, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :truck_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :truck_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cost_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :cost_type_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :amt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :amt, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                costs_path, :class => 'btn' %>
+  </div>
+<% end %>

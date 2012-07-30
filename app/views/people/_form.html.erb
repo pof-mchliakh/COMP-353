@@ -1,32 +1,38 @@
 <%= form_for @person, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :ID, :class => 'control-label' %>
+    <%= f.label :first_name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :ID, :class => 'number_field' %>
+      <%= f.text_field :first_name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :fName, :class => 'control-label' %>
+    <%= f.label :last_name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :fName, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :lName, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :lName, :class => 'text_field' %>
+      <%= f.text_field :last_name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :telephone, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :telephone, :class => 'number_field' %>
+      <%= f.text_field :telephone, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :addressID, :class => 'control-label' %>
+    <%= f.label :street_number, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :addressID, :class => 'number_field' %>
+      <%= f.number_field :street_number, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :apt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :apt, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :address_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :address_id, :class => 'number_field' %>
     </div>
   </div>
 

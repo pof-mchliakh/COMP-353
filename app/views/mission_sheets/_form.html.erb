@@ -1,0 +1,38 @@
+<%= form_for @mission_sheet, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :mission_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :mission_id, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :actual_start_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :actual_start_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :actual_end_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :actual_end_time, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :start_odometer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :start_odometer, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :end_odometer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :end_odometer, :class => 'number_field' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                mission_sheets_path, :class => 'btn' %>
+  </div>
+<% end %>

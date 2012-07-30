@@ -4,16 +4,18 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:ID) %>:</strong></dt>
-  <dd><%= @person.ID %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:fName) %>:</strong></dt>
-  <dd><%= @person.fName %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:lName) %>:</strong></dt>
-  <dd><%= @person.lName %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dd><%= @person.first_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @person.last_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:telephone) %>:</strong></dt>
   <dd><%= @person.telephone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:addressID) %>:</strong></dt>
-  <dd><%= @person.addressID %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:street_number) %>:</strong></dt>
+  <dd><%= @person.street_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:apt) %>:</strong></dt>
+  <dd><%= @person.apt %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address_id) %>:</strong></dt>
+  <dd><%= @person.address_id %></dd>
 </dl>
 
 <div class="form-actions">

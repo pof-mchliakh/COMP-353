@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  actual_start_time: 2012-07-28 21:22:23
+  actual_end_time: 2012-07-28 21:22:23
+  start_odometer: 
+  end_odometer: 
+  mission_id: 
+
+two:
+  actual_start_time: 2012-07-28 21:22:23
+  actual_end_time: 2012-07-28 21:22:23
+  start_odometer: 
+  end_odometer: 
+  mission_id: 

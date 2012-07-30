@@ -1,7 +1,37 @@
 Rentrack::Application.routes.draw do
-  resources :addresses
+  resources :taxes
+  
+  resources :missions
+
+  resources :truck_types
+
+  resources :trucks
+
+  resources :tax_types
+
+  resources :reservations
 
   resources :people
+
+  resources :payments
+
+  resources :mission_sheets
+
+  resources :invoice_taxes
+
+  resources :invoices
+
+  resources :drivers
+
+  resources :cost_types
+
+  resources :costs
+
+  resources :clients
+
+  resources :addresses
+
+  resources :license_types
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

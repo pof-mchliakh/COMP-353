@@ -1,0 +1,38 @@
+<%- model_class = InvoiceTax -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:invoice_id) %></th>
+      <th><%= model_class.human_attribute_name(:tax_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invoice_taxes.each do |invoice_tax| %>
+      <tr>
+        <td><%= link_to invoice_tax.id, invoice_tax_path(invoice_tax) %></td>
+        <td><%= invoice_tax.invoice_id %></td>
+        <td><%= invoice_tax.tax_id %></td>
+        <td><%=l invoice_tax.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_invoice_tax_path(invoice_tax), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      invoice_tax_path(invoice_tax),
+                      :method => :delete,
+                      :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_invoice_tax_path,
+            :class => 'btn btn-primary' %>

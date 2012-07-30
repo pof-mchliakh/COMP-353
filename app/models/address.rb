@@ -1,4 +1,3 @@
 class Address < ActiveRecord::Base
-  attr_accessible :streetName, :apt, :city, :postalcode, :created_at
-  
+  attr_accessible :city, :postal_code, :street_name
 end
