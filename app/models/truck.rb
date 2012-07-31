@@ -1,4 +1,4 @@
 class Truck < ActiveRecord::Base
-  has_many :truck_types
+  belongs_to :truck_type
   attr_accessible :truck_type_id
 end

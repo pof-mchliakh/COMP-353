@@ -1,4 +1,4 @@
 class TaxType < ActiveRecord::Base
-  belongs_to :tax
+  has_many :taxes
   attr_accessible :name
 end

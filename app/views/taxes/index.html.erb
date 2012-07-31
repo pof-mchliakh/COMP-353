@@ -21,7 +21,7 @@
         <td><%=l tax.start_date, :format => :short_date %></td>
         <td><%=l tax.end_date %></td>
         <td><%= tax.percentage %></td>
-        <td><%= tax.tax_type_id %></td>
+        <td><%= tax.tax_type.name %></td>
         <td><%=l tax.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

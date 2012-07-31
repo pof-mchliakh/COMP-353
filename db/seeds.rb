@@ -28,9 +28,12 @@
 #     {truck_type_id: 2}
 # ])
 
-# Address.create([
-#     {id: 1. street_name: "Main Street", city: "Montreal", postal_code: "A1A1A1" }
-# ])
+Address.create([
+    { street_name: "CHAMPLAIN BLVD", city: "Montreal", postal_code: "H4H 1A1" },
+    { street_name: "RENE LEVESQUE BLVD", city: "Montreal", postal_code: "H3B 3B0" },
+    { street_name: "PRINCE ARTHUR STREET", city: "Montreal", postal_code: "H2X 1T4" },
+    { street_name: "BERRI STREET", city: "Montreal", postal_code: "H2Y 3E6" },
+])
 
 # Person.create([
 #     {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", address_id: 1},
@@ -51,8 +54,8 @@
 
 # Invoice.create([ {date: Date.parse("2012-7-28 12:00:00")} ])
 
-LicenseType.create([
-    { name: "12W"},
-    { name: "18W"},
-    { name: "12345"}
-])
+# LicenseType.create([
+#     { name: "12W"},
+#     { name: "18W"},
+#     { name: "12345"}
+# ])

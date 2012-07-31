@@ -15,7 +15,7 @@
     <% @trucks.each do |truck| %>
       <tr>
         <td><%= link_to truck.id, truck_path(truck) %></td>
-        <td><%= truck.truck_type_id %></td>
+        <td><%= truck.truck_type.name %></td>
         <td><%=l truck.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
