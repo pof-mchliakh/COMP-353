@@ -100,13 +100,14 @@ var oTable;
 /* Table initialisation */
 $(document).ready(function() {
     /* Add a click handler to the rows - this could be used as a callback */
-    $("#clients tbody tr").click( function( e ) {
+    $("#clients tbody tr").click( function( e ) {        
         if ( $(this).hasClass('row_selected') ) {
             $(this).removeClass('row_selected');
         }
         else {
             oTable.$('tr.row_selected').removeClass('row_selected');
             $(this).addClass('row_selected');
+            updateClientName();
         }
     });
 
@@ -121,6 +122,13 @@ $(document).ready(function() {
     function fnGetSelected( oTableLocal )
     {
         return oTableLocal.$('tr.row_selected');
+    }
+
+    function updateClientName() {
+        var client = fnGetSelected(oTable);
+        var firstName = client.find("td").eq(2)[0].innerText;
+        var lastName = client.find("td").eq(1)[0].innerText;
+        $("#selected_client").text(firstName + " " + lastName);
     }
      
 } );

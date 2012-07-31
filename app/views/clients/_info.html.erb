@@ -1,0 +1,20 @@
+<table id="clients" class="table table-striped table-bordered dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Telephone</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% clients.each do |client| %>
+            <tr>
+                <td><%= client.id %></td>
+                <td><%= client.last_name %></td>
+                <td><%= client.first_name %></td>
+                <td><%= "(#{client.telephone[0,3]}) #{client.telephone[3,3]}-#{client.telephone[6,4]}" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

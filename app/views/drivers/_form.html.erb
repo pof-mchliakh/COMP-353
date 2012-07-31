@@ -1,8 +1,8 @@
 <%= form_for @driver, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :person_id, :class => 'control-label' %>
+    <%= f.label :person, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :person_id, :class => 'number_field' %>
+        <%= collection_select(:driver, :person_id, Person.all, :id, :full_name) %>       
     </div>
   </div>
 

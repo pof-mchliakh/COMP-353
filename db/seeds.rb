@@ -28,12 +28,12 @@
 #     {truck_type_id: 2}
 # ])
 
-Address.create([
-    { street_name: "CHAMPLAIN BLVD", city: "Montreal", postal_code: "H4H 1A1" },
-    { street_name: "RENE LEVESQUE BLVD", city: "Montreal", postal_code: "H3B 3B0" },
-    { street_name: "PRINCE ARTHUR STREET", city: "Montreal", postal_code: "H2X 1T4" },
-    { street_name: "BERRI STREET", city: "Montreal", postal_code: "H2Y 3E6" },
-])
+# Address.create([
+#     { street_name: "CHAMPLAIN BLVD", city: "Montreal", postal_code: "H4H 1A1" },
+#     { street_name: "RENE LEVESQUE BLVD", city: "Montreal", postal_code: "H3B 3B0" },
+#     { street_name: "PRINCE ARTHUR STREET", city: "Montreal", postal_code: "H2X 1T4" },
+#     { street_name: "BERRI STREET", city: "Montreal", postal_code: "H2Y 3E6" },
+# ])
 
 # Person.create([
 #     {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", address_id: 1},
@@ -59,3 +59,7 @@ Address.create([
 #     { name: "18W"},
 #     { name: "12345"}
 # ])
+
+Driver.create([
+    { person_id: 1 }
+])

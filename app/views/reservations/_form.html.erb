@@ -1,22 +1,10 @@
 <%= form_for @reservation, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :client_id, :class => 'control-label' %>
+    <%= f.label :client, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :client_id, :class => 'number_field' %>
+      <div id="selected_client"></div>
     </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :mission_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :mission_id, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :address_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :address_id, :class => 'number_field' %>
-    </div>
-  </div>
+  </div>  
   <div class="control-group">
     <%= f.label :street_number, :class => 'control-label' %>
     <div class="controls">
@@ -27,6 +15,12 @@
     <%= f.label :apt, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :apt, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :address, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select(:reservation, :address_id, Address.all, :id, :full) %> 
     </div>
   </div>
   <div class="control-group">

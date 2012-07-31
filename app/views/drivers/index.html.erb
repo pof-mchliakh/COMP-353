@@ -15,7 +15,7 @@
     <% @drivers.each do |driver| %>
       <tr>
         <td><%= link_to driver.id, driver_path(driver) %></td>
-        <td><%= driver.person_id %></td>
+        <td><%= driver.person.full_name %></td>
         <td><%=l driver.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

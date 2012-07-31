@@ -11,14 +11,17 @@
 <div class="span6">
     <h3>2. Create a reservation</h3>
     <br />
-<%= render :partial => 'form' %>
-
+    <%= render :partial => 'form' %>
 </div>
 <div id="payment_info" class="span5">
     <h3>4. Enter payment</h3>
     <br />
+    <% @payment = Payment.new %>
+    <%= render :partial => 'payments/form' %>
 </div>
 <div id="mission_info" class="span6">
-    <h3>3. Add misssion</h3>
+    <h3>3. Add misssion</h3>    
     <br />
+    <% @mission = Mission.new %>
+    <%= render :partial => 'missions/form' %>
 </div>
