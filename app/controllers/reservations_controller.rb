@@ -25,6 +25,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new.json
   def new
     @reservation = Reservation.new
+    @clients = Person.all
 
     respond_to do |format|
       format.html # new.html.erb

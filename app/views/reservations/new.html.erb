@@ -4,11 +4,21 @@
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
 <div id="client_info" class="span5">
-    Client
+    <h3>1. Select a client</h3>
+    <br />
+    <%= render :partial => 'clients/info',:locals => {:clients => @clients} %>
 </div>
-<div class="span5">
+<div class="span6">
+    <h3>2. Create a reservation</h3>
+    <br />
 <%= render :partial => 'form' %>
 
 </div>
-<div id="payment_info" class="span5">Payment</div>
-<div id="mission_info" class="span5">Mission</div>
+<div id="payment_info" class="span5">
+    <h3>4. Enter payment</h3>
+    <br />
+</div>
+<div id="mission_info" class="span6">
+    <h3>3. Add misssion</h3>
+    <br />
+</div>

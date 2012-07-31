@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 8e38453e001049b50b5ac5eae65992cfd2782328
+  specs:
+    jquery-datatables-rails (1.10.0)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -114,6 +121,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  jquery-datatables-rails!
   jquery-rails
   mysql2
   nokogiri
