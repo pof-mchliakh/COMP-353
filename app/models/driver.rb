@@ -1,5 +1,6 @@
 class Driver < ActiveRecord::Base
   belongs_to :person
+  has_many :missions
   attr_accessible :person_id
 
   def full_name

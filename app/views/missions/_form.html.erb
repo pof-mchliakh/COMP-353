@@ -1,10 +1,4 @@
-<%= form_for @mission, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :invoice_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :invoice_id, :class => 'number_field' %>
-    </div>
-  </div>
+<%= form_for @mission, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="control-group">
     <%= f.label :driver_id, :class => 'control-label' %>
     <div class="controls">
@@ -29,6 +23,7 @@
       <%= f.datetime_select :expected_end_time, :class => 'datetime_select' %>
     </div>
   </div>
+  <%= hidden_field_tag 'mission[reservation_id]' %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>    

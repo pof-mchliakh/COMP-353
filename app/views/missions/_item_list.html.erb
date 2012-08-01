@@ -1,0 +1,7 @@
+<li class="well">
+    <div>Id: <%= mission.id unless mission.nil? %> </div>
+    <div>Driver's Name: <%= mission.driver.full_name unless mission.driver.nil? %></div>
+    <div>Truck Type: <%= mission.truck.truck_type.name unless mission.truck.nil? %></div>
+    <div>Start Date: <%= mission.expected_start_time unless mission.nil? %></div>
+    <div>End Date: <%= mission.expected_end_time unless mission.nil? %></div>
+</li>
