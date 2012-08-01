@@ -6,8 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:client_id) %></th>
-      <th><%= model_class.human_attribute_name(:mission_id) %></th>
+      <th><%= model_class.human_attribute_name(:client_id) %></th>      
       <th><%= model_class.human_attribute_name(:address_id) %></th>
       <th><%= model_class.human_attribute_name(:street_number) %></th>
       <th><%= model_class.human_attribute_name(:apt) %></th>
@@ -21,8 +20,7 @@
     <% @reservations.each do |reservation| %>
       <tr>
         <td><%= link_to reservation.id, reservation_path(reservation) %></td>
-        <td><%= reservation.client_id %></td>
-        <td><%= reservation.mission_id %></td>
+        <td><%= reservation.client_id %></td>        
         <td><%= reservation.address_id %></td>
         <td><%= reservation.street_number %></td>
         <td><%= reservation.apt %></td>

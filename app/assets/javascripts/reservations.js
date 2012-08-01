@@ -125,10 +125,13 @@ $(document).ready(function() {
     }
 
     function updateClientName() {
-        var client = fnGetSelected(oTable);
-        var firstName = client.find("td").eq(2)[0].innerText;
-        var lastName = client.find("td").eq(1)[0].innerText;
+        var client = fnGetSelected(oTable).find("td");
+
+        var client_id = client.eq(0)[0].innerText;
+        var firstName = client.eq(2)[0].innerText;
+        var lastName = client.eq(1)[0].innerText;
         $("#selected_client").text(firstName + " " + lastName);
+        $("#reservation_client_id").val(client_id);
     }
      
 } );
