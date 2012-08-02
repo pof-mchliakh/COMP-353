@@ -13,15 +13,15 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :apt, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :apt, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
     <%= f.label :address, :class => 'control-label' %>
     <div class="controls">
       <%= collection_select(:reservation, :address_id, Address.all, :id, :full) %> 
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :apt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :apt, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">

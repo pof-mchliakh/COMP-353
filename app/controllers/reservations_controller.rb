@@ -44,7 +44,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(params[:reservation])
    # @reservation.client_id = params[:client_id]
     puts @reservation.inspect
-
+    Reservation.test
+    
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
