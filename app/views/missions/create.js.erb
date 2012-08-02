@@ -1,1 +1,1 @@
-$("#missions_list").append("<%= escape_javascript(render :partial => 'missions/item_list', :locals => {:mission => @mission})%>");
+$("#missions_list").prepend("<%= escape_javascript(render :partial => 'missions/item_list', :locals => {:mission => @mission})%>");

@@ -1,7 +1,16 @@
 <li class="well">
-    <div>Id: <%= mission.id unless mission.nil? %> </div>
-    <div>Driver's Name: <%= mission.driver.full_name unless mission.driver.nil? %></div>
-    <div>Truck Type: <%= mission.truck.truck_type.name unless mission.truck.nil? %></div>
-    <div>Start Date: <%= mission.expected_start_time unless mission.nil? %></div>
-    <div>End Date: <%= mission.expected_end_time unless mission.nil? %></div>
+    <div class="id" id="<%= dom_id(@mission) %>"><%= mission.id unless mission.nil? %> </div>
+    <div class="button-remove-mission">
+        <%= link_to mission, :confirm => 'Are you sure?', :method => :delete, :remote => true do %>
+            <i class="icon-remove"></i>
+        <% end %>
+    </div>
+    <div class="message">
+        <b>Driver's Name:</b> <%= mission.driver.full_name unless mission.driver.nil? %>.
+        <b>Truck Type:</b> <%= mission.truck.truck_type.name unless mission.truck.nil? %>.
+        <div class="dates">
+            <b>Starts On </b> <%=l mission.expected_start_time, :format => :short_date unless mission.nil? %>
+            <b>and Ends On:</b> <%=l mission.expected_end_time, :format => :short_date unless mission.nil? %>.
+        </div>
+    </div>
 </li>
