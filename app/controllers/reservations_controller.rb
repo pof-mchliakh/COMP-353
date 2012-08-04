@@ -43,8 +43,6 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(params[:reservation])
    # @reservation.client_id = params[:client_id]
-    puts @reservation.inspect
-    Reservation.test
     
     respond_to do |format|
       if @reservation.save
@@ -78,7 +76,8 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1.json
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
+#    @reservation.destroy
+    @reservation.delete
 
     respond_to do |format|
       format.html { redirect_to reservations_url }

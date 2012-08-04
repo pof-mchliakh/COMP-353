@@ -2,17 +2,17 @@ class Reservation < ActiveRecord::Base
   belongs_to :address
   belongs_to :client
   
-  attr_accessible :address_id, :appointment_date, :apt, :client_id, :invoice_id, :expected_end_time, :street_number
+  attr_accessible :address_id, :appointment_date, :apt, :client_id, :expected_end_time, :street_number
 
-  def self.test
+def delete
     sql_command = [
         %Q^
-            call test()
-        ^
-        ]                       
-    execute(sql_command)
+            call delete_reservation(:reservation_id)
+        ^, {:reservation_id => id}
+    ]
+    Reservation.execute(sql_command)
   end
-
+  
   private     
   def self.sanitize_sql_array(array)
     ActiveRecord::Base.send(:sanitize_sql_array, array)
