@@ -1,6 +1,7 @@
 class Reservation < ActiveRecord::Base
   belongs_to :address
   belongs_to :client
+  has_many :missions
   
   attr_accessible :address_id, :appointment_date, :apt, :client_id, :expected_end_time, :street_number
 
@@ -12,7 +13,7 @@ def delete
     ]
     Reservation.execute(sql_command)
   end
-  
+
   private     
   def self.sanitize_sql_array(array)
     ActiveRecord::Base.send(:sanitize_sql_array, array)

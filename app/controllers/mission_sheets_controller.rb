@@ -25,6 +25,14 @@ class MissionSheetsController < ApplicationController
   # GET /mission_sheets/new.json
   def new
     @mission_sheet = MissionSheet.new
+    @missions = Mission.find_by_sql %Q^
+      SELECT mission.* 
+      FROM 
+        mission LEFT OUTER JOIN
+        mission_sheet ON mission.id = mission_sheet.mission_id
+      WHERE 
+      mission_sheet.mission_id IS  NULL;
+    ^
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +43,14 @@ class MissionSheetsController < ApplicationController
   # GET /mission_sheets/1/edit
   def edit
     @mission_sheet = MissionSheet.find(params[:id])
+    @missions = Mission.find_by_sql %Q^
+      SELECT mission.* 
+      FROM 
+        mission LEFT OUTER JOIN
+        mission_sheet ON mission.id = mission_sheet.mission_id
+      WHERE 
+      mission_sheet.mission_id IS NOT NULL;
+    ^
   end
 
   # POST /mission_sheets

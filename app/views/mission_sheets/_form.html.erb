@@ -1,8 +1,8 @@
 <%= form_for @mission_sheet, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :mission_id, :class => 'control-label' %>
+    <%= f.label :mission, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :mission_id, :class => 'number_field' %>
+      <%= collection_select(:mission_sheet, :mission_id, @missions, :id, :description) %>
     </div>
   </div>
   <div class="control-group">
