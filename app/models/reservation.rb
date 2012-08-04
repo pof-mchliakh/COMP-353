@@ -2,7 +2,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :address
   belongs_to :client
   
-  attr_accessible :address_id, :appointment_date, :apt, :client_id, :expected_end_time, :street_number
+  attr_accessible :address_id, :appointment_date, :apt, :client_id, :invoice_id, :expected_end_time, :street_number
 
   def self.test
     sql_command = [

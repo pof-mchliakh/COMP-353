@@ -51,8 +51,8 @@ TaxType.create([
 ])
 
 Tax.create([
-    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: nil, percentage: 0.085, tax_type_id: 1 },
-    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: nil, percentage: 0.075, tax_type_id: 2 }
+    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.today, percentage: 0.085, tax_type_id: 1 },
+    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.today, percentage: 0.075, tax_type_id: 2 }
 ])
 
 # -----------------------------------------------------------
@@ -60,10 +60,10 @@ Tax.create([
 # -----------------------------------------------------------
 
 Person.create([
-    {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", address_id: 1},
-    {first_name: "Eric", last_name: "Cartman",    telephone: "5145550002", address_id: 1},
-    {first_name: "Kyle", last_name: "Broflovski", telephone: "5145550003", address_id: 1},
-    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", address_id: 1}
+    {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", street_number: 1, address_id: 1},
+    {first_name: "Eric", last_name: "Cartman",    telephone: "5145550002", street_number: 2, address_id: 1},
+    {first_name: "Kyle", last_name: "Broflovski", telephone: "5145550003", street_number: 3, address_id: 1},
+    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", street_number: 4, address_id: 1}
 ])
 
 Client.create([

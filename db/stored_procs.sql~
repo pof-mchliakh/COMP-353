@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `rentrack_development`.`delete_reservation`(IN reservation_id INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_reservation`(IN reservation_id INT)
 BEGIN
     #Delete the mission
     DELETE FROM mission
