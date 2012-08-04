@@ -2,7 +2,7 @@ class CostTypesController < ApplicationController
   # GET /cost_types
   # GET /cost_types.json
   def index
-    @cost_types = CostType.all
+    @cost_types = CostType.find_by_sql 'SELECT * FROM cost_type'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class CostTypesController < ApplicationController
   # GET /cost_types/1
   # GET /cost_types/1.json
   def show
-    @cost_type = CostType.find(params[:id])
+    @cost_type = (CostType.find_by_sql 'SELECT * FROM cost_type WHERE id = ' + params[:id])[0]
 
     respond_to do |format|
       format.html # show.html.erb

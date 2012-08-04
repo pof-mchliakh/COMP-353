@@ -2,7 +2,7 @@ class DriverLicenseTypesController < ApplicationController
   # GET /driver_license_types
   # GET /driver_license_types.json
   def index
-    @driver_license_types = DriverLicenseType.all
+    @driver_license_types = DriverLicenseType.find_by_sql 'SELECT * FROzM driver_license_type'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class DriverLicenseTypesController < ApplicationController
   # GET /driver_license_types/1
   # GET /driver_license_types/1.json
   def show
-    @driver_license_type = DriverLicenseType.find(params[:id])
+    @driver_license_type = (DriverLicenseType.find_by_sql 'SELECT * FROM driver_license_type WHERE id = ' + params[:id])[0]
 
     respond_to do |format|
       format.html # show.html.erb

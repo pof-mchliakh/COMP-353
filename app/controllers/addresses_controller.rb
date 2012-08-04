@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   # GET /addresses
   # GET /addresses.json
   def index
-    @addresses = Address.all
+    @addresses = Address.find_by_sql 'SELECT * FROM address'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
-    @address = Address.find(params[:id])
+    @address = (Address.find_by_sql 'SELECT * FROM address WHERE id = ' + params[:id])[0]
 
     respond_to do |format|
       format.html # show.html.erb

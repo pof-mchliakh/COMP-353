@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = Client.find_by_sql 'SELECT * FROM client'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class ClientsController < ApplicationController
   # GET /clients/1
   # GET /clients/1.json
   def show
-    @client = Client.find(params[:id])
+    @client = (Client.find_by_sql 'SELECT * FROM client WHERE id = ' + params[:id])[0]
 
     respond_to do |format|
       format.html # show.html.erb
