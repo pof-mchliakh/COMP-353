@@ -24,8 +24,8 @@
         <td><%= reservation.street_number %></td>        
         <td><%= reservation.address.full %></td>
         <td><%= reservation.apt %></td>
-        <td><%= reservation.appointment_date %></td>
-        <td><%= reservation.expected_end_time %></td>
+        <td><%=l reservation.appointment_date %></td>
+        <td><%=l reservation.expected_end_time %></td>
         <td><%=l reservation.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

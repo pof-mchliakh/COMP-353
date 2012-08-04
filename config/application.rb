@@ -82,3 +82,26 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
   end
   html
 end
+
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  RAILS_DEFAULT_LOGGER = Logger.new(STDOUT)
+elsif defined?(Rails) && !Rails.env.nil?
+  if Rails.logger
+    Rails.logger = Logger.new(STDOUT)
+    ActiveRecord::Base.logger = Rails.logger if defined? ActiveRecord
+  end
+end
+
+if Rails.env.development?
+  Rails::Rack::Logger.class_eval do
+    def call_with_quiet_assets(env)
+      previous_level = Rails.logger.level
+      Rails.logger.level = Logger::ERROR if env['PATH_INFO'] =~ %r{^/assets/}
+      call_without_quiet_assets(env)
+    ensure
+      Rails.logger.level = previous_level
+    end
+    alias_method_chain :call, :quiet_assets
+  end
+end

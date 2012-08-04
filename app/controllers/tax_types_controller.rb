@@ -2,7 +2,7 @@ class TaxTypesController < ApplicationController
   # GET /tax_types
   # GET /tax_types.json
   def index
-    @tax_types = TaxType.all
+    @tax_types =  TaxType.find_by_sql 'SELECT * FROM tax_type'
 
     respond_to do |format|
       format.html # index.html.erb
