@@ -43,6 +43,7 @@ class InvoicesController < ApplicationController
   # GET /invoices/1/edit
   def edit
     @invoice = Invoice.find(params[:id])
+    @reservations = [Reservation.find(@invoice.reservation_id)]
   end
 
   # POST /invoices
