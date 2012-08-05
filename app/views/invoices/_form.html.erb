@@ -11,11 +11,32 @@
       <%= f.date_select :date, :class => 'date_select' %>
     </div>
   </div>
-      
-
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                invoices_path, :class => 'btn' %>
+  <div class="control-group">
+    <div class="controls">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Cost</th>
+          <th>TPS</th>
+          <th>TVQ</th>
+          <th>Total Cost</th>    
+          <th>Remaining</th>    
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>100.00$</td>
+          <td>10.00$</td>
+          <td>10.00$</td>
+          <td>120.00$</td>
+          <td>120.00$</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
   </div>
 <% end %>
+<% @payment = Payment.new %>
+<% @payment.invoice_id = @invoice.id %>
+<%= render :partial => 'payments/form' %>
+

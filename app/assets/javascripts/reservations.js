@@ -108,11 +108,12 @@ $(document).ready(function() {
             oTable.$('tr.row_selected').removeClass('row_selected');
             $(this).addClass('row_selected');
             updateClientName();
+            $("#reservation_info").fadeIn(500);
         }
     });
 
     oTable = $('#clients').dataTable( {
-        "sDom": "<'row'<'span5'l><'span5'f>r>t<'row'<'span5'i><'span5'p>>",
+        "sDom": "<'row'<'span12'l><'span12'f>r>t<'row'<'span12'i><'span12'p>>",
         "sPaginationType": "bootstrap",
         "bLengthChange": false,
         "bInfo": false

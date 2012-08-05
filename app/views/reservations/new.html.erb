@@ -3,21 +3,15 @@
   <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
                                  :default => "New #{model_class.model_name.human}") %></h1>
 </div>
-<div id="client_info" class="span5">
+<div id="client_info" class="span12">
     <h3>1. Select a client</h3>
     <br />
     <%= render :partial => 'clients/info',:locals => {:clients => @clients} %>
 </div>
-<div class="span6">
+<div id="reservation_info" class="span6">
     <h3>2. Create a reservation</h3>
     <br />
     <%= render :partial => 'form' %>
-</div>
-<div id="payment_info" class="span5">
-    <h3>4. Enter payment</h3>
-    <br />
-    <% @payment = Payment.new %>
-    <%= render :partial => 'payments/form' %>
 </div>
 <div id="mission_info" class="span6">
     <h3>3. Add missions</h3>   

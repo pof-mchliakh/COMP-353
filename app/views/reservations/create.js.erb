@@ -1,4 +1,3 @@
-$("#reservation_button_create").animate({opacity: 0}, 500);
+$("#reservation_button_create").parent().hide();
 $("#mission_info").fadeIn(500);
-$("#payment_info").fadeIn(500);
 $("#mission_reservation_id").val(<%= @reservation.id %>);
