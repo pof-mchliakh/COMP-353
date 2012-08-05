@@ -10,8 +10,14 @@
     <li>
         <li><%= link_to "Mission Sheets", mission_sheets_path %></li>
     </li>
-    <li>
-        <li><%= link_to "Billing", invoices_path %></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Invoices<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><%= link_to "Add", new_invoice_path %></li>
+            <li><%= link_to "View / Modify", invoices_path %></li>
+            <li><%= link_to "Report", '#' %></li>
+
+        </ul>
     </li>
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>

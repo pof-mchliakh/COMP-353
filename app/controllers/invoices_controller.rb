@@ -25,6 +25,14 @@ class InvoicesController < ApplicationController
   # GET /invoices/new.json
   def new
     @invoice = Invoice.new
+    @reservations = Reservation.find_by_sql %Q^
+      SELECT reservation.* 
+      FROM 
+        reservation LEFT OUTER JOIN
+        invoice ON reservation.id = invoice.reservation_id
+      WHERE 
+      invoice.reservation_id IS  NULL;
+    ^
 
     respond_to do |format|
       format.html # new.html.erb
