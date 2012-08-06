@@ -1,5 +1,5 @@
 <li class="well">
-    <div class="id" id="<%= dom_id(@mission) %>"><%= mission.id unless mission.nil? %> </div>
+    <div class="id" id="<%= dom_id(mission) %>"><%= mission.id unless mission.nil? %> </div>
     <div class="button-remove-mission">
         <%= link_to mission, :confirm => 'Are you sure?', :method => :delete, :remote => true do %>
             <i class="icon-remove"></i>

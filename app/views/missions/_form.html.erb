@@ -23,7 +23,7 @@
       <%= f.datetime_select :expected_end_time, :class => 'datetime_select' %>
     </div>
   </div>
-  <%= hidden_field_tag 'mission[reservation_id]' %>
+  <%= hidden_field_tag 'mission[reservation_id]', @reservation.id unless @reservation.nil? %>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>    

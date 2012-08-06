@@ -3,4 +3,20 @@
   <h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
                                    :default => "Edit #{model_class.model_name.human}") %></h1>
 </div>
-<%= render :partial => 'form' %>
+<div class="span6">
+    <%= render :partial => 'form' %>
+</div>
+
+<div id="mission_info" class="span5" style="display: inline-block">
+    <h3>Add missions</h3>
+    <br />   
+    <% @mission = Mission.new %>
+    <%= render :partial => 'missions/form' %>
+    <div>
+        <ul id="missions_list">
+            <% @reservation.missions.each do |m| %>
+            <%= render :partial => 'missions/item_list', :locals => {:mission => m} %>
+            <% end %>
+        </ul>
+    </div> 
+</div>
