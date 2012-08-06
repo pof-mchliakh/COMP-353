@@ -103,3 +103,172 @@ INNER JOIN mission_sheet
 ON mission.id = mission_sheet.mission_id
 WHERE mission.reservation_id = reservation_id
 GROUP BY reservation_id
+
+
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `select_taxes`(IN reservation_id INT)
+BEGIN
+SELECT ((
+SELECT SUM(((end_odometer - start_odometer) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'KM'
+)
+) +
+
+(DATEDIFF(actual_end_time, actual_start_time) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'Duration')
+
+))
+FROM
+mission
+INNER JOIN mission_sheet
+ON mission.id = mission_sheet.mission_id
+WHERE mission.reservation_id = reservation_id
+GROUP BY reservation_id
+) *
+
+(SELECT tax.percentage
+FROM invoice
+INNER JOIN invoice_tax
+ON invoice.id = invoice_tax.invoice_id
+INNER JOIN tax
+ON invoice_tax.tax_id = tax.id
+INNER JOIN tax_type
+ON tax.tax_type_id = tax_type.id
+WHERE tax_type.name LIKE 'TPS' AND
+invoice.reservation_id = reservation_id
+)) AS amount_tps,
+(
+
+SELECT SUM(((end_odometer - start_odometer) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'KM'
+)
+
+) +
+
+(DATEDIFF(actual_end_time, actual_start_time) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'Duration')
+
+)) AS cost_reservation
+
+FROM
+mission
+INNER JOIN mission_sheet
+ON mission.id = mission_sheet.mission_id
+WHERE mission.reservation_id = reservation_id
+GROUP BY reservation_id +
+
+(((
+SELECT SUM(((end_odometer - start_odometer) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'KM'
+)
+) +
+
+(DATEDIFF(actual_end_time, actual_start_time) * 
+
+(SELECT amt FROM
+mission
+INNER JOIN truck
+ON mission.truck_id = truck.id
+INNER JOIN truck_type
+ON truck.truck_type_id = truck_type.id
+INNER JOIN cost
+ON truck_type.id = cost.truck_type_id
+INNER JOIN cost_type
+ON cost.cost_type_id = cost_type.id
+WHERE cost_type.name LIKE 'Duration')
+
+))
+FROM
+mission
+INNER JOIN mission_sheet
+ON mission.id = mission_sheet.mission_id
+WHERE mission.reservation_id = reservation_id
+GROUP BY reservation_id
+) *
+
+(SELECT tax.percentage
+FROM invoice
+INNER JOIN invoice_tax
+ON invoice.id = invoice_tax.invoice_id
+INNER JOIN tax
+ON invoice_tax.tax_id = tax.id
+INNER JOIN tax_type
+ON tax.tax_type_id = tax_type.id
+WHERE tax_type.name LIKE 'TPS' AND
+invoice.reservation_id = reservation_id
+)) * 
+(SELECT tax.percentage
+FROM invoice
+INNER JOIN invoice_tax
+ON invoice.id = invoice_tax.invoice_id
+INNER JOIN tax
+ON invoice_tax.tax_id = tax.id
+INNER JOIN tax_type
+ON tax.tax_type_id = tax_type.id
+WHERE tax_type.name LIKE 'TVQ' AND
+invoice.reservation_id = reservation_id
+))) AS amount_tvq
+
+FROM reservation
+WHERE reservation.id = reservation_id;
+END
