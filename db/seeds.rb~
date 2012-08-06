@@ -99,9 +99,9 @@ Invoice.create([
     { date: Date.today, reservation_id: 1 }
 ])
 
-#Payment.create([
-#     {invoice_id: 1, payment_type_id: 1},
-#])
+Payment.create([
+     {invoice_id: 1, payment_type_id: 1},
+])
 
 InvoiceTax.create([
     { invoice_id: 1, tax_id: 1}
