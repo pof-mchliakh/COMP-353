@@ -36,7 +36,14 @@
     </div>
   </div>
 <% end %>
+
 <% @payment = Payment.new %>
 <% @payment.invoice_id = @invoice.id %>
 <%= render :partial => 'payments/form' %>
-
+ <div>
+    <ul id="payments_list">
+       <% @invoice.payments.each do |p| %>
+       <%= render :partial => 'payments/item_list', :locals => {:payment => p} %>
+       <% end %>
+    </ul>
+</div> 

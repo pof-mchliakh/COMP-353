@@ -5,7 +5,7 @@
       <div id="selected_client">
         <%= @reservation.client.full_name unless @reservation.client.nil? %>
       </div>
-      <%= hidden_field_tag 'reservation[client_id]', @reservation.client.id unless @reservation.client.nil? %>
+      <%= hidden_field_tag 'reservation[client_id]', @reservation.client_id unless @reservation.nil? %>
     </div>
   </div>  
   <div class="control-group">
