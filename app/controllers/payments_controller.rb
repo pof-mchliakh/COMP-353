@@ -41,11 +41,13 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(params[:payment])
+    @payment.invoice_id = params[:invoice][:id]
 
     respond_to do |format|
       if @payment.save
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
         format.json { render json: @payment, status: :created, location: @payment }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @payment.errors, status: :unprocessable_entity }
@@ -78,6 +80,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to payments_url }
       format.json { head :no_content }
+      format.js
     end
   end
 end

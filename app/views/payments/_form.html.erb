@@ -1,4 +1,4 @@
-<%= form_for @payment, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @payment, :html => { :class => 'form-horizontal' }, :remote => true do |f| %>
   <div class="control-group">
     <%= f.label :payment_type, :class => 'control-label' %>
     <div class="controls">     
@@ -11,6 +11,10 @@
       <%= f.number_field :amount, :class => 'number_field' %>
     </div>
   </div>
+  <%= hidden_field_tag 'invoice[id]', @invoice.id unless @invoice.nil? %>
+  <%= hidden_field_tag 'invoice[reservation_id]', @invoice.reservation_id unless @invoice.nil? %>
+  <%= hidden_field_tag 'invoice[date]', @invoice.date unless @invoice.nil? %>
+
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
