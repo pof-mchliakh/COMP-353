@@ -7,6 +7,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:total) %></th>
+      <th><%= model_class.human_attribute_name(:remaining) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -16,6 +18,8 @@
       <tr>
         <td><%= link_to invoice.id, invoice_path(invoice) %></td>
         <td><%= invoice.date %></td>
+        <td><%= number_to_currency invoice.total %></td>
+        <td><%= number_to_currency invoice.remaining %></td>
         <td><%=l invoice.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

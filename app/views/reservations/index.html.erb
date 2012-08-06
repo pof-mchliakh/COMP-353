@@ -29,7 +29,7 @@
         <td><%=l reservation.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_reservation_path(reservation), :class => 'btn btn-mini' %>
+                      edit_reservation_path(reservation), :class => 'btn btn-mini' %>          
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       reservation_path(reservation),
                       :method => :delete,

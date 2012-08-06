@@ -82,7 +82,7 @@ class InvoicesController < ApplicationController
   # DELETE /invoices/1.json
   def destroy
     @invoice = Invoice.find(params[:id])
-    @invoice.destroy
+    @invoice.delete
 
     respond_to do |format|
       format.html { redirect_to invoices_url }
