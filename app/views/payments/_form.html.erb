@@ -8,7 +8,7 @@
   <div class="control-group">
     <%= f.label :amount, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :amount, :class => 'number_field' %>
+      <%= f.text_field :amount,  :class => 'number_field', :value => @payment.invoice.remaining unless @payment.invoice.nil? %>
     </div>
   </div>
   <%= hidden_field_tag 'invoice[id]', @invoice.id unless @invoice.nil? %>

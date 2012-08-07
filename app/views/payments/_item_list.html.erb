@@ -1,0 +1,13 @@
+<li class="well">
+    <div class="id" id="<%= dom_id(payment) %>"></div>
+    <div class="button-remove-mission">
+        <%= link_to payment, :confirm => 'Are you sure?', :method => :delete, :remote => true do %>
+            <i class="icon-remove"></i>
+        <% end %>
+    </div>
+    <div class="message">
+        <b>Amount of </b> <%= number_to_currency payment.amount unless payment.nil? %>
+        <br />
+        <b>Paid by</b> <%= payment.payment_type.name unless payment.nil? %>
+    </div>
+</li>

@@ -46,7 +46,7 @@ END
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SELECT_INVOICE_INFO`(IN passed_client_id INT, IN start_date DATETIME, IN end_date DATETIME)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `select_invoice_info`(IN passed_client_id INT, IN start_date DATETIME, IN end_date DATETIME)
 BEGIN
     SELECT actual_start_time, actual_end_time, start_odometer, end_odometer
     FROM mission_sheet
@@ -64,211 +64,109 @@ BEGIN
     WHERE (invoice.date < end_date) AND (invoice.date > start_date);
 END
 
-SELECT SUM(((end_odometer - start_odometer) * 
+delimiter $$
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'KM'
-)
-
-) +
-
-(DATEDIFF(actual_end_time, actual_start_time) * 
-
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'Duration')
-
-)) AS cost_reservation
-
-FROM
-mission
-INNER JOIN mission_sheet
-ON mission.id = mission_sheet.mission_id
-WHERE mission.reservation_id = reservation_id
-GROUP BY reservation_id
-
-
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `select_taxes`(IN reservation_id INT)
+CREATE DEFINER=`root`@`localhost` FUNCTION `reservation_total_cost_no_tax`(reservation_id INT) RETURNS decimal(10,2)
 BEGIN
-SELECT ((
-SELECT SUM(((end_odometer - start_odometer) * 
+    DECLARE total DECIMAL(10, 2);
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'KM'
-)
-) +
+    CREATE TEMPORARY TABLE details (
+        mission_id INT,
+        truck_type_id INT,
+        km  INT,
+        duration INT
+    );
 
-(DATEDIFF(actual_end_time, actual_start_time) * 
+    -- Wouldn't be needed usually by mysql is shit and doesn't allow reusing a temp table in the same query
+    CREATE TEMPORARY TABLE results (
+        unit INT,
+        price DECIMAL(10, 2)
+    );
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'Duration')
+    INSERT INTO details
+    SELECT
+        mission.id,
+        truck.truck_type_id,
+        end_odometer - start_odometer,
+        DATEDIFF(actual_end_time, actual_start_time)
+    FROM
+        reservation INNER JOIN
+        mission       ON reservation.id   = mission.reservation_id   INNER JOIN
+        mission_sheet ON mission.id       = mission_sheet.mission_id INNER JOIN
+        truck         ON mission.truck_id = truck.id
+    WHERE reservation.id = reservation_id;
 
-))
-FROM
-mission
-INNER JOIN mission_sheet
-ON mission.id = mission_sheet.mission_id
-WHERE mission.reservation_id = reservation_id
-GROUP BY reservation_id
-) *
+    INSERT INTO results
+    SELECT 
+        details.km,
+        cost.amt
+    FROM
+        details INNER JOIN
+        cost        ON  details.truck_type_id = cost.truck_type_id INNER JOIN
+        cost_type   ON  cost.cost_type_id     = cost_type.id
+                    AND cost_type.name        = 'KM';
 
-(SELECT tax.percentage
-FROM invoice
-INNER JOIN invoice_tax
-ON invoice.id = invoice_tax.invoice_id
-INNER JOIN tax
-ON invoice_tax.tax_id = tax.id
-INNER JOIN tax_type
-ON tax.tax_type_id = tax_type.id
-WHERE tax_type.name LIKE 'TPS' AND
-invoice.reservation_id = reservation_id
-)) AS amount_tps,
-(
+    INSERT INTO results
+    SELECT 
+        details.duration,
+        cost.amt
+    FROM
+        details INNER JOIN
+        cost        ON  details.truck_type_id = cost.truck_type_id INNER JOIN
+        cost_type   ON  cost.cost_type_id     = cost_type.id
+                    AND cost_type.name        = 'Duration';
 
-SELECT SUM(((end_odometer - start_odometer) * 
+    
+    SELECT SUM(unit * price)
+    INTO total
+    FROM results;
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'KM'
-)
+    DROP TEMPORARY TABLE details;
+    DROP TEMPORARY TABLE results;
+    RETURN total;            
+END$$
 
-) +
+delimiter $$
 
-(DATEDIFF(actual_end_time, actual_start_time) * 
+CREATE DEFINER=`root`@`localhost` FUNCTION `reservation_total_cost_paid`(reservation_id INT) RETURNS decimal(10,2)
+BEGIN
+    DECLARE total DECIMAL(10, 2);
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'Duration')
+    SELECT
+        SUM(amount)
+    INTO total
+    FROM
+        reservation INNER JOIN
+        invoice ON reservation.id = invoice.reservation_id INNER JOIN
+        payment ON invoice.id     = payment.invoice_id
+     WHERE reservation.id = reservation_id;
+    
+    RETURN total;            
+END$$
 
-)) AS cost_reservation
+delimiter $$
 
-FROM
-mission
-INNER JOIN mission_sheet
-ON mission.id = mission_sheet.mission_id
-WHERE mission.reservation_id = reservation_id
-GROUP BY reservation_id +
+CREATE DEFINER=`root`@`localhost` FUNCTION `select_tax`(date DATETIME, tax_type_name VARCHAR(50)) RETURNS decimal(10,2)
+BEGIN
+    RETURN (
+        SELECT
+            percentage
+        FROM 
+        tax INNER JOIN
+        tax_type ON  tax.tax_type_id      = tax_type.id 
+                 AND lower(tax_type.name) = lower(tax_type_name)
+        WHERE tax.start_date <= date AND tax.end_date >= date       
+    );            
+END$$
 
-(((
-SELECT SUM(((end_odometer - start_odometer) * 
+delimiter $$
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'KM'
-)
-) +
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_invoice`(invoice_id INT)
+BEGIN
+    DELETE FROM payment
+    WHERE payment.invoice_id = invoice_id;
 
-(DATEDIFF(actual_end_time, actual_start_time) * 
+    DELETE FROM invoice
+    WHERE invoice.id = invoice_id;    
+END$$
 
-(SELECT amt FROM
-mission
-INNER JOIN truck
-ON mission.truck_id = truck.id
-INNER JOIN truck_type
-ON truck.truck_type_id = truck_type.id
-INNER JOIN cost
-ON truck_type.id = cost.truck_type_id
-INNER JOIN cost_type
-ON cost.cost_type_id = cost_type.id
-WHERE cost_type.name LIKE 'Duration')
-
-))
-FROM
-mission
-INNER JOIN mission_sheet
-ON mission.id = mission_sheet.mission_id
-WHERE mission.reservation_id = reservation_id
-GROUP BY reservation_id
-) *
-
-(SELECT tax.percentage
-FROM invoice
-INNER JOIN invoice_tax
-ON invoice.id = invoice_tax.invoice_id
-INNER JOIN tax
-ON invoice_tax.tax_id = tax.id
-INNER JOIN tax_type
-ON tax.tax_type_id = tax_type.id
-WHERE tax_type.name LIKE 'TPS' AND
-invoice.reservation_id = reservation_id
-)) * 
-(SELECT tax.percentage
-FROM invoice
-INNER JOIN invoice_tax
-ON invoice.id = invoice_tax.invoice_id
-INNER JOIN tax
-ON invoice_tax.tax_id = tax.id
-INNER JOIN tax_type
-ON tax.tax_type_id = tax_type.id
-WHERE tax_type.name LIKE 'TVQ' AND
-invoice.reservation_id = reservation_id
-))) AS amount_tvq
-
-FROM reservation
-WHERE reservation.id = reservation_id;
-END

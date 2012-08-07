@@ -25,25 +25,22 @@
       </thead>
       <tbody>
         <tr>
-          <td>100.00$</td>
-          <td>10.00$</td>
-          <td>10.00$</td>
-          <td>120.00$</td>
-          <td>120.00$</td>
+          <td><%= number_to_currency @invoice.total_no_tax unless @invoice.nil? %></td>
+          <td><%= number_to_currency @invoice.tps unless @invoice.nil? %></td>
+          <td><%= number_to_currency @invoice.tvq unless @invoice.nil? %></td>
+          <td><%= number_to_currency @invoice.total unless @invoice.nil? %></td>
+          <td id="remaining"><%= number_to_currency @invoice.remaining  unless @invoice.nil? %></td>
         </tr>
       </tbody>
     </table>
     </div>
   </div>
-<% end %>
 
-<% @payment = Payment.new %>
-<% @payment.invoice_id = @invoice.id %>
-<%= render :partial => 'payments/form' %>
- <div>
-    <ul id="payments_list">
-       <% @invoice.payments.each do |p| %>
-       <%= render :partial => 'payments/item_list', :locals => {:payment => p} %>
-       <% end %>
-    </ul>
-</div> 
+  <% if @invoice.new_record? %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  invoices_path, :class => 'btn' %>
+    </div>
+  <% end %>
+<% end %>

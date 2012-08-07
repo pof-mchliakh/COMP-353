@@ -1,0 +1,2 @@
+$("#<%= dom_id(@payment) %>").parent().remove();
+$("#remaining").text("<%= number_to_currency @payment.invoice.remaining %>");
