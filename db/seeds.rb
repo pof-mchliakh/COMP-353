@@ -1,23 +1,15 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
-
 
 # -----------------------------------------------------------
 # LOOKUP TABLES 
 # -----------------------------------------------------------
 
 Address.create([
-    { street_name: "CHAMPLAIN BLVD", city: "Montreal", postal_code: "H4H 1A1" },
-    { street_name: "RENE LEVESQUE BLVD", city: "Montreal", postal_code: "H3B 3B0" },
-    { street_name: "PRINCE ARTHUR STREET", city: "Montreal", postal_code: "H2X 1T4" },
-    { street_name: "BERRI STREET", city: "Montreal", postal_code: "H2Y 3E6" },
+    { street_name: "CHAMPLAIN BLVD", city: "Montreal", postal_code: "H4H1A1" },
+    { street_name: "RENE LEVESQUE BLVD", city: "Montreal", postal_code: "H3B3B0" },
+    { street_name: "PRINCE ARTHUR STREET", city: "Montreal", postal_code: "H2X1T4" },
+    { street_name: "BERRI STREET", city: "Montreal", postal_code: "H2Y3E6" },
 ])
 
 
@@ -29,8 +21,7 @@ PaymentType.create([
 
 LicenseType.create([
     { name: "12W"},
-    { name: "18W"},
-    { name: "12345"}
+    { name: "18W"},    
 ])
 
 TruckType.create([
@@ -49,8 +40,8 @@ TaxType.create([
 ])
 
 Tax.create([
-    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.today, percentage: 0.085, tax_type_id: 1 },
-    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.today, percentage: 0.075, tax_type_id: 2 }
+    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.parse("2099-1-1 12:00:00"), percentage: 0.085, tax_type_id: 1 },
+    { start_date: Date.parse("2012-1-1 12:00:00"), end_date: Date.parse("2099-1-1 12:00:00"), percentage: 0.075, tax_type_id: 2 }
 ])
 
 
@@ -60,8 +51,8 @@ CostType.create([
  ])
 
 Cost.create([
-     {truck_type_id: 1, cost_type_id: 1, amt: 10.5},
-     {truck_type_id: 1, cost_type_id: 2, amt: 11.0}
+     {truck_type_id: 1, cost_type_id: 1, amt: 1.5},
+     {truck_type_id: 1, cost_type_id: 2, amt: 2.0}
 ])
 
 # -----------------------------------------------------------
@@ -70,13 +61,16 @@ Cost.create([
 
 Person.create([
     {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", street_number: 1, address_id: 1},
-    {first_name: "Eric", last_name: "Cartman",    telephone: "5145550002", street_number: 2, address_id: 1},
-    {first_name: "Kyle", last_name: "Broflovski", telephone: "5145550003", street_number: 3, address_id: 1},
-    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", street_number: 4, address_id: 1}
+    {first_name: "Eric", last_name: "Cartman",    telephone: "5145550002", street_number: 2, address_id: 2},
+    {first_name: "Kyle", last_name: "Broflovski", telephone: "5145550003", street_number: 3, address_id: 3},
+    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", street_number: 4, address_id: 4}
 ])
 
 Client.create([
-    { person_id: 1 }
+    { person_id: 1 },
+    { person_id: 2 }
+    { person_id: 3 }
+    { person_id: 4 }
 ])
 
 Reservation.create ([
@@ -98,16 +92,4 @@ MissionSheet.create([
 Invoice.create([
     { date: Date.today, reservation_id: 1 }
 ])
-
-#Payment.create([
-#     {invoice_id: 1, payment_type_id: 1},
-#])
-
-InvoiceTax.create([
-    { invoice_id: 1, tax_id: 1}
-])
-
-
-
-# Invoice.create([ {date: Date.parse("2012-7-28 12:00:00")} ])
 
