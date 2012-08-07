@@ -7,6 +7,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:mission_id) %></th>
+      <th><%= model_class.human_attribute_name(:reservation_id) %></th>
       <th><%= model_class.human_attribute_name(:actual_start_time) %></th>
       <th><%= model_class.human_attribute_name(:actual_end_time) %></th>
       <th><%= model_class.human_attribute_name(:start_odometer) %></th>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= link_to mission_sheet.id, mission_sheet_path(mission_sheet) %></td>
         <td><%= mission_sheet.mission_id %></td>
+        <td><%= mission_sheet.mission.reservation_id %></td>
         <td><%=l mission_sheet.actual_start_time %></td>
         <td><%=l mission_sheet.actual_end_time %></td>
         <td><%= mission_sheet.start_odometer %></td>

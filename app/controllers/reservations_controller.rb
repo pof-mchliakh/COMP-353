@@ -25,7 +25,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new.json
   def new
     @reservation = Reservation.new
-    @clients = Person.all
+    @clients = Person.find_by_sql "SELECT person.* FROM person inner join client on person.id = client.person_id"
 
     respond_to do |format|
       format.html # new.html.erb

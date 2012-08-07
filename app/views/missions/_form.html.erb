@@ -8,7 +8,7 @@
   <div class="control-group">
     <%= f.label :truck, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select(:mission, :truck_id, Truck.all, :id, :id) %>       
+      <%= collection_select(:mission, :truck_id, Truck.all, :id, :truck_type_name) %>       
     </div>
   </div>
   <div class="control-group">

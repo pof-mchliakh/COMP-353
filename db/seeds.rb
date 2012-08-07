@@ -52,7 +52,9 @@ CostType.create([
 
 Cost.create([
      {truck_type_id: 1, cost_type_id: 1, amt: 1.5},
-     {truck_type_id: 1, cost_type_id: 2, amt: 2.0}
+     {truck_type_id: 1, cost_type_id: 2, amt: 2.0},
+     {truck_type_id: 2, cost_type_id: 1, amt: 2.0},
+     {truck_type_id: 2, cost_type_id: 2, amt: 4.0}
 ])
 
 # -----------------------------------------------------------
@@ -63,13 +65,15 @@ Person.create([
     {first_name: "Stan", last_name: "Marsh",      telephone: "5145550001", street_number: 1, address_id: 1},
     {first_name: "Eric", last_name: "Cartman",    telephone: "5145550002", street_number: 2, address_id: 2},
     {first_name: "Kyle", last_name: "Broflovski", telephone: "5145550003", street_number: 3, address_id: 3},
-    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", street_number: 4, address_id: 4}
+    {first_name: "Kenny", last_name: "McCornick", telephone: "5145550004", street_number: 4, address_id: 4},
+    {first_name: "Bugs", last_name: "Bunny", telephone: "5145550005", street_number: 5, address_id: 4},
+    {first_name: "Daffy", last_name: "Duck", telephone: "5145550006", street_number: 6, address_id: 2},
 ])
 
 Client.create([
     { person_id: 1 },
-    { person_id: 2 }
-    { person_id: 3 }
+    { person_id: 2 },
+    { person_id: 3 },
     { person_id: 4 }
 ])
 
@@ -78,7 +82,8 @@ Reservation.create ([
 ])
 
 Driver.create([
-    { person_id: 1 }
+    { person_id: 5 },
+    { person_id: 6 }
 ])
 
 Mission.create([
