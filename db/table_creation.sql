@@ -68,6 +68,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `rentrack_development`.`license_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `rentrack_development`.`license_type` ;
+
+CREATE  TABLE IF NOT EXISTS `rentrack_development`.`license_type` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `name` VARCHAR(255) NOT NULL ,
+  `created_at` DATETIME NULL ,
+  `updated_at` DATETIME NULL ,
+  PRIMARY KEY (`id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `rentrack_development`.`driver`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `rentrack_development`.`driver` ;
@@ -75,13 +89,20 @@ DROP TABLE IF EXISTS `rentrack_development`.`driver` ;
 CREATE  TABLE IF NOT EXISTS `rentrack_development`.`driver` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `person_id` INT UNSIGNED NOT NULL ,
+  `license_type_id` INT UNSIGNED NOT NULL ,
   `created_at` DATETIME NULL ,
   `updated_at` DATETIME NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_driver_person_driver_id` (`person_id` ASC) ,
+  INDEX `fk_driver_license_type_license_type_id` (`license_type_id` ASC) ,
   CONSTRAINT `fk_driver_person_driver_id`
     FOREIGN KEY (`person_id` )
     REFERENCES `rentrack_development`.`person` (`id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_driver_license_type_license_type_id`
+    FOREIGN KEY (`license_type_id` )
+    REFERENCES `rentrack_development`.`license_type` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -373,20 +394,6 @@ CREATE  TABLE IF NOT EXISTS `rentrack_development`.`payment` (
     REFERENCES `rentrack_development`.`payment_type` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `rentrack_development`.`license_type`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `rentrack_development`.`license_type` ;
-
-CREATE  TABLE IF NOT EXISTS `rentrack_development`.`license_type` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(255) NOT NULL ,
-  `created_at` DATETIME NULL ,
-  `updated_at` DATETIME NULL ,
-  PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
 
