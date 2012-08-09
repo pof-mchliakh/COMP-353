@@ -82,8 +82,8 @@ Reservation.create ([
 ])
 
 Driver.create([
-    { person_id: 5 },
-    { person_id: 6 }
+    { person_id: 5, license_type_id: 1 },
+    { person_id: 6, license_type_id: 2 }
 ])
 
 Mission.create([
