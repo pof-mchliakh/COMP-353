@@ -133,7 +133,7 @@ BEGIN
     DECLARE total DECIMAL(10, 2);
 
     SELECT
-        SUM(amount)
+        SUM(amt)
     INTO total
     FROM
         reservation INNER JOIN
