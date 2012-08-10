@@ -39,7 +39,7 @@ class Invoice < ActiveRecord::Base
             SELECT IFNULL(reservation_total_cost_paid(:reservation_id), 0);
         ^, {:reservation_id => reservation_id}
     ]
-    total - Invoice.execute(sql_command).first[0]
+    total.round(2) - Invoice.execute(sql_command).first[0]
   end
 
   def delete    
