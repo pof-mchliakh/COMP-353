@@ -1,0 +1,21 @@
+<%= form_tag '/report', method: 'get', html: { class: 'form-horizontal' }, remote: true do %>
+  <div class="control-group">
+    <%= label_tag :from_date, 'From:', class: 'control-label' %>
+    <div class="controls">
+      <%= select_date Date.new(1955, 11, 5), prefix: :from_date,
+        start_year: 1955, end_year: Time.now.year, class: 'select_date' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= label_tag :from_date, 'Until:', class: 'control-label' %>
+    <div class="controls">
+      <%= select_date Date.today, prefix: :until_date, class: 'select_date' %>
+    </div>
+  </div>
+
+  <%= hidden_field_tag 'reservation[client_id]', '' %>
+  <div class="form-actions">
+    <%= submit_tag 'Generate', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,4 +1,8 @@
 Rentrack::Application.routes.draw do  
+  get 'report/new'
+
+  match 'report' => "report#show"
+
   resources :payment_types
 
   resources :taxes

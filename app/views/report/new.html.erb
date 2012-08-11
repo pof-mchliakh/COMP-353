@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>New Report</h1>
+</div>
+
+<div id="client_info" class="span12">
+    <h3>1. Select a client</h3>
+    <br />
+    <%= render :partial => 'clients/info',:locals => {:clients => @clients} %>
+</div>
+<div id="reservation_info" class="span6">
+    <h3>2. Filter invoices</h3>
+    <br />
+    <%= render :partial => 'form' %>
+</div>
+<div id="report" class="span12"></div>
+

@@ -1,7 +1,3 @@
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
 DELIMITER $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `rentrack_development`.`delete_reservation`(IN reservation_id INT)
@@ -37,34 +33,8 @@ BEGIN
     #Delete from the reservation table
     DELETE FROM reservation
     WHERE reservation.id = reservation_id;
-END
+END$$
 
-
--- --------------------------------------------------------------------------------
--- Routine DDL
--- Note: comments before and after the routine body will not be stored by the server
--- --------------------------------------------------------------------------------
-DELIMITER $$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `select_invoice_info`(IN passed_client_id INT, IN start_date DATETIME, IN end_date DATETIME)
-BEGIN
-    SELECT actual_start_time, actual_end_time, start_odometer, end_odometer
-    FROM mission_sheet
-
-    INNER JOIN mission
-    ON mission_sheet.mission_id = mission.id
-
-    INNER JOIN reservation
-    ON mission.reservation_id = reservation.id
-    AND reservation.id = passed_client_id
-
-    INNER JOIN invoice
-    ON reservation.id = invoice.reservation_id
-
-    WHERE (invoice.date < end_date) AND (invoice.date > start_date);
-END
-
-delimiter $$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `reservation_total_cost_no_tax`(reservation_id INT) RETURNS decimal(10,2)
 BEGIN
@@ -126,7 +96,6 @@ BEGIN
     RETURN total;            
 END$$
 
-delimiter $$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `reservation_total_cost_paid`(reservation_id INT) RETURNS decimal(10,2)
 BEGIN
@@ -144,7 +113,6 @@ BEGIN
     RETURN total;            
 END$$
 
-delimiter $$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `select_tax`(date DATETIME, tax_type_name VARCHAR(50)) RETURNS decimal(10,2)
 BEGIN
@@ -159,7 +127,6 @@ BEGIN
     );            
 END$$
 
-delimiter $$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_invoice`(invoice_id INT)
 BEGIN
@@ -168,5 +135,4 @@ BEGIN
 
     DELETE FROM invoice
     WHERE invoice.id = invoice_id;    
-END$$
-
+END
