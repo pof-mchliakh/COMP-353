@@ -2,6 +2,15 @@ class Invoice < ActiveRecord::Base
   has_many :payments
   attr_accessible :date, :reservation_id
 
+  def by_missions_cost
+    sql_command = [
+        %Q^
+            CALL reservation_missions_cost(:reservation_id);
+        ^, {:reservation_id => reservation_id}
+    ]
+    Invoice.execute(sql_command)
+  end
+  
   def total_no_tax
     sql_command = [
         %Q^
@@ -57,6 +66,12 @@ class Invoice < ActiveRecord::Base
   end
 
   def self.execute(sql_command)
-    ActiveRecord::Base.connection.execute( sanitize_sql_array(sql_command) )
+    connection = ActiveRecord::Base.connection
+    begin
+      connection.execute( sanitize_sql_array(sql_command) )
+    rescue
+    ensure
+    connection.reconnect! unless connection.active?
+  end
   end
 end

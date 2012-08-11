@@ -16,6 +16,7 @@
     <table class="table table-condensed">
       <thead>
         <tr>
+          <th>Mission Id</th>
           <th>Cost</th>
           <th>TPS</th>
           <th>TVQ</th>
@@ -24,14 +25,27 @@
         </tr>
       </thead>
       <tbody>
+        <% @invoice.by_missions_cost.each do |m| %>
         <tr>
+          <td><%= m[0] %></td>
+          <td><%= number_to_currency m[3] + m[4] %></td>
+          <td><%= number_to_currency m[5] %></td>
+          <td><%= number_to_currency m[6] %></td>
+          <td><%= number_to_currency m[3] + m[4] + m[5] + m[6] %></td>
+          <td>-</td>
+        </tr>
+        <% end %>
+      </tbody> 
+      <tfoot>
+        <tr>
+          <td>Total</td>
           <td><%= number_to_currency @invoice.total_no_tax unless @invoice.nil? %></td>
           <td><%= number_to_currency @invoice.tps unless @invoice.nil? %></td>
           <td><%= number_to_currency @invoice.tvq unless @invoice.nil? %></td>
           <td><%= number_to_currency @invoice.total unless @invoice.nil? %></td>
           <td id="remaining"><%= number_to_currency @invoice.remaining  unless @invoice.nil? %></td>
         </tr>
-      </tbody>
+      </tfoot>  
     </table>
     </div>
   </div>
