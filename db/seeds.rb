@@ -78,7 +78,8 @@ Client.create([
 ])
 
 Reservation.create ([
-    { address_id: 1, client_id: 1, street_number: 1234, appointment_date: Date.today, expected_end_time: Date.today }
+    { address_id: 1, client_id: 1, street_number: 1234, appointment_date: Date.today, expected_end_time: Date.today + 2 }
+    { address_id: 3, client_id: 2, street_number: 1914, appointment_date: Date.new(2012, 9, 5), expected_end_time: Date.new(2012, 9, 6) }
 ])
 
 Driver.create([
